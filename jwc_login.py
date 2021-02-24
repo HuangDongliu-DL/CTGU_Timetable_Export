@@ -7,6 +7,9 @@ from io import BytesIO
 
 import requests
 from bs4 import BeautifulSoup
+# 下面两行主要为解决在Rpi上运行报错的问题
+import locale
+locale.setlocale(locale.LC_ALL, 'C')
 import tesserocr
 from PIL import Image
 
@@ -16,7 +19,7 @@ class Login:
     用于登入教务处
     '''
     def __init__(self,username,password):
-        # 用户账号
+        # 用户账好
         self.username = username
         # 用户密码
         self.password = password
