@@ -97,7 +97,7 @@ class jwc:
                 i = i.encode('GBK').decode('GBK').replace('&#160;',';').replace('<br/>',';').replace('<td>','').replace('</td>','')
                 if i != '' and i!=';':
                     split_data = [j for j in i.split(';') if j != ' ']
-                    # 因为体育课没有上课地点，所以排除
+                    # 因为体育课没有上课地点,所以其长度为3
                     if len(split_data) == 3:
                         course_name, period_of_week, teacher = split_data
                         location = ''
@@ -112,6 +112,22 @@ class jwc:
                                 'day_of_week':day_of_week,
                                 'period_of_day':period_of_day
                             })
+                    elif len(split_data) == 8:
+                        for i in range(2):
+                            if i == 0:
+                                course_name, location, period_of_week, teacher = split_data[0:4]
+                            else:
+                                course_name, location, period_of_week, teacher = split_data[4:]
+                            # 对周数做一点小修改，方便以后的计算
+                            period_of_week = tuple(period_of_week.replace("周",'').split('-'))
+                            Course.append({
+                                    "sing_or_double":None,
+                                    'course_name':course_name,
+                                    'location':location,
+                                    'period_of_week':period_of_week,
+                                    'teacher':teacher,
+                                    'day_of_week':day_of_week,
+                                    'period_of_day':period_of_day})
                     # 开始匹配单双周
                     elif len(split_data) > 4:
                         course_name,location_one,period_of_week,sing_or_double_one,teacher,*_ = split_data

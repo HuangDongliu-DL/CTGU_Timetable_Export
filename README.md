@@ -11,6 +11,8 @@ python3 main.py -u <username> -p <password> -y <shool_year> -t <term>
 
 在程序运行完成后会在程序目录出现一个t.ics的文件，把这个文件发送给手机，用手机自带的日历打开即可导入课表信息。在导入之后课表的配色可以手动修改一些，这样看上去可能更好看一些。
 
+苹果可以将ICS文件内容复制到https://www.qrcode-monkey.com/上，生成一个二维码通过自带的相机扫一扫就可以了。
+
 ## 二、示例
 
 - Samsung手机导入效果
